@@ -46,7 +46,7 @@ const RecentLeadsTable = ({ leads }: RecentLeadsTableProps) => {
             <TableCell>{lead.source}</TableCell>
             <TableCell>
               <Button
-                variant="ghost"
+                variant="default"
                 size="sm"
                 onClick={() => navigate(`/leads/${lead.id}`)}
               >

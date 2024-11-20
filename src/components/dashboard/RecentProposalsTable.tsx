@@ -46,7 +46,7 @@ const RecentProposalsTable = ({ proposals }: RecentProposalsTableProps) => {
             <TableCell>{proposal.status}</TableCell>
             <TableCell>
               <Button
-                variant="ghost"
+                variant="default"
                 size="sm"
                 onClick={() => navigate(`/propostas/${proposal.id}`)}
               >
