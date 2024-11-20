@@ -1,12 +1,5 @@
 import { Card } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Users, Bike, FileText, DollarSign } from "lucide-react";
 import {
   LineChart,
   Line,
@@ -16,7 +9,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowUpRight, Users, Bike, FileText, DollarSign } from "lucide-react";
+import StatsCards from "@/components/dashboard/StatsCards";
+import RecentProposalsTable from "@/components/dashboard/RecentProposalsTable";
+import RecentLeadsTable from "@/components/dashboard/RecentLeadsTable";
 
 const data = [
   { name: "Jan", value: 1200000 },
@@ -118,74 +113,17 @@ const Index = () => {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <Card key={stat.title} className="p-6">
-              <div className="flex items-center justify-between">
-                <Icon className="h-5 w-5 text-gray-600" />
-                <span className="text-green-600 bg-green-50 px-2 py-1 rounded-full text-xs font-medium flex items-center">
-                  {stat.change}
-                  <ArrowUpRight className="h-3 w-3 ml-1" />
-                </span>
-              </div>
-              <div className="mt-4">
-                <p className="text-2xl font-bold">{stat.value}</p>
-                <p className="text-sm text-gray-600">{stat.title}</p>
-              </div>
-            </Card>
-          );
-        })}
-      </div>
+      <StatsCards stats={stats} />
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="p-6">
           <h2 className="text-lg font-medium mb-4">Últimas Propostas</h2>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Cliente</TableHead>
-                <TableHead>Modelo</TableHead>
-                <TableHead>Valor</TableHead>
-                <TableHead>Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {recentProposals.map((proposal) => (
-                <TableRow key={proposal.id}>
-                  <TableCell>{proposal.client}</TableCell>
-                  <TableCell>{proposal.model}</TableCell>
-                  <TableCell>{proposal.value}</TableCell>
-                  <TableCell>{proposal.status}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <RecentProposalsTable proposals={recentProposals} />
         </Card>
 
         <Card className="p-6">
           <h2 className="text-lg font-medium mb-4">Últimos Leads</h2>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Nome</TableHead>
-                <TableHead>Interesse</TableHead>
-                <TableHead>Contato</TableHead>
-                <TableHead>Origem</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {recentLeads.map((lead) => (
-                <TableRow key={lead.id}>
-                  <TableCell>{lead.name}</TableCell>
-                  <TableCell>{lead.interest}</TableCell>
-                  <TableCell>{lead.contact}</TableCell>
-                  <TableCell>{lead.source}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <RecentLeadsTable leads={recentLeads} />
         </Card>
       </div>
 
