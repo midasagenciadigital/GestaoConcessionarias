@@ -1,5 +1,13 @@
 import { Card } from "@/components/ui/card";
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
   LineChart,
   Line,
   XAxis,
@@ -46,6 +54,60 @@ const stats = [
   },
 ];
 
+const recentProposals = [
+  {
+    id: "1",
+    client: "João Silva",
+    model: "Honda CB 500X",
+    value: "R$ 42.990,00",
+    status: "Enviada",
+    date: "2024-02-20",
+  },
+  {
+    id: "2",
+    client: "Maria Santos",
+    model: "Yamaha MT-07",
+    value: "R$ 39.990,00",
+    status: "Em análise",
+    date: "2024-02-19",
+  },
+  {
+    id: "3",
+    client: "Pedro Costa",
+    model: "BMW G 310 GS",
+    value: "R$ 37.500,00",
+    status: "Aceita",
+    date: "2024-02-18",
+  },
+];
+
+const recentLeads = [
+  {
+    id: "1",
+    name: "Ana Oliveira",
+    interest: "Honda CB 650R",
+    contact: "(11) 98765-4321",
+    source: "Website",
+    date: "2024-02-20",
+  },
+  {
+    id: "2",
+    name: "Carlos Mendes",
+    interest: "Kawasaki Z900",
+    contact: "(11) 91234-5678",
+    source: "Instagram",
+    date: "2024-02-19",
+  },
+  {
+    id: "3",
+    name: "Lucia Ferreira",
+    interest: "Triumph Street Triple",
+    contact: "(11) 94567-8901",
+    source: "Facebook",
+    date: "2024-02-18",
+  },
+];
+
 const Index = () => {
   return (
     <div className="space-y-6 animate-fade-in">
@@ -75,6 +137,56 @@ const Index = () => {
             </Card>
           );
         })}
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="p-6">
+          <h2 className="text-lg font-medium mb-4">Últimas Propostas</h2>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Cliente</TableHead>
+                <TableHead>Modelo</TableHead>
+                <TableHead>Valor</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {recentProposals.map((proposal) => (
+                <TableRow key={proposal.id}>
+                  <TableCell>{proposal.client}</TableCell>
+                  <TableCell>{proposal.model}</TableCell>
+                  <TableCell>{proposal.value}</TableCell>
+                  <TableCell>{proposal.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
+
+        <Card className="p-6">
+          <h2 className="text-lg font-medium mb-4">Últimos Leads</h2>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nome</TableHead>
+                <TableHead>Interesse</TableHead>
+                <TableHead>Contato</TableHead>
+                <TableHead>Origem</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {recentLeads.map((lead) => (
+                <TableRow key={lead.id}>
+                  <TableCell>{lead.name}</TableCell>
+                  <TableCell>{lead.interest}</TableCell>
+                  <TableCell>{lead.contact}</TableCell>
+                  <TableCell>{lead.source}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
       </div>
 
       <Card className="p-6">
